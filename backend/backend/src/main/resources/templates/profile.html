@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🎓 Student Dashboard</h2>
+
+    <!-- PROFILE FORM -->
+    <div class="card">
+        <h3>Update Profile</h3>
+
+        <form action="/profile/save" method="post">
+            Full Name:
+            <input type="text" name="fullName">
+
+            CGPA:
+            <input type="text" name="cgpa">
+
+            Skills:
+            <input type="text" name="skills">
+
+            Certifications:
+            <input type="text" name="certifications">
+
+            Projects:
+            <textarea name="projects"></textarea>
+
+            <button type="submit">Save Profile</button>
+        </form>
+    </div>
+
+    <!-- 🔥 JOB LIST -->
+    <div class="card">
+        <h3>Available Jobs</h3>
+
+        <div th:each="job : ${jobs}" class="job-box">
+
+            <p><b>Title:</b> <span th:text="${job.title}"></span></p>
+            <p><b>Company:</b> <span th:text="${job.company}"></span></p>
+            <p><b>Eligibility:</b> <span th:text="${job.eligibility}"></span></p>
+
+            <!-- APPLY BUTTON -->
+            <form action="/apply" method="post">
+                <input type="hidden" name="jobTitle" th:value="${job.title}">
+                <input type="hidden" name="studentName" th:value="${session.user.name}">
+                <button type="submit" class="btn">Apply</button>
+            </form>
+
+            <hr>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

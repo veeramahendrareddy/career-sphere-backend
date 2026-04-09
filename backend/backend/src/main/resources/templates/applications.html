@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applications</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Applications</h2>
+
+    <div class="card">
+
+        <table border="1" width="100%">
+            <tr>
+                <th>Student</th>
+                <th>Job</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="app : ${apps}">
+                <td th:text="${app.studentName}"></td>
+                <td th:text="${app.jobTitle}"></td>
+                <td th:text="${app.status}"></td>
+                <td>
+                    <a th:href="@{/approve/{id}(id=${app.id})}">Approve</a>
+                    <a th:href="@{/reject/{id}(id=${app.id})}">Reject</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
